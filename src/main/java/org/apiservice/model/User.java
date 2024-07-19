@@ -19,12 +19,13 @@ public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Nonnull
     @Column(name = "fullname")
     private String fullName;
 
+    @Nonnull
     @Column(name = "email", unique = true)
     private String email;
 
