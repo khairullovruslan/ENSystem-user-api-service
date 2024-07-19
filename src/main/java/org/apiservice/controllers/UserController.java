@@ -6,6 +6,8 @@ import org.apiservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -22,9 +24,15 @@ public class UserController {
     public User addNewUser(@RequestBody UserDTO user){
         return userService.save(user);
     }
+
     @GetMapping("{id}")
-    public User showUserById(@PathVariable("id") long id){
+    public User getUserById(@PathVariable("id") long id){
         System.out.println(id);
         return userService.showById(id);
+    }
+
+    @GetMapping
+    public List<User> getAllUsers(){
+        return userService.getAllUsers();
     }
 }
