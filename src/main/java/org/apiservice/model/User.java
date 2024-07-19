@@ -1,10 +1,9 @@
 package org.apiservice.model;
 
 import jakarta.annotation.Nonnull;
-import lombok.Getter;
+import jakarta.validation.constraints.Email;
+import lombok.*;
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +12,9 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
+@AllArgsConstructor
 @Table(name = "Users")
+@Builder
 @NoArgsConstructor
 public class User {
     @Id
@@ -26,19 +27,17 @@ public class User {
     private String fullName;
 
     @Nonnull
+    @Email
     @Column(name = "email", unique = true)
     private String email;
 
     @OneToMany(mappedBy = "groupOwner")
-    private List<Group> ownGroups;
+    private Set<Group> ownGroups;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="users_groups",
             joinColumns=  @JoinColumn(name="user_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="group_id", referencedColumnName="id") )
-    private Set<Group> groups = new HashSet<>();
-
-
-
+    private Set<Group> groups;
 
 }
