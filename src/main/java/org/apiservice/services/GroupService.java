@@ -29,6 +29,12 @@ public class GroupService {
                 .name(group.getName())
                 .build());
     }
+
+    public Group save(Group group){
+        return groupRepository.save(group);
+    }
+
+
     public Group showById(long id){
         return groupRepository.findById(id).orElseThrow();
     }
