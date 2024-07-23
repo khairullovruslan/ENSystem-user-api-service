@@ -25,6 +25,9 @@ public class UserService {
                 .fullName(user.getFullName())
                 .build());
     }
+    public User save(User user){
+        return userRepository.save(user);
+    }
     public User showById(long id){
         return userRepository.findById(id).orElseThrow();
     }
