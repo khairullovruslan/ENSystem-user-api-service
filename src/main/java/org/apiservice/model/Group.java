@@ -21,6 +21,10 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public Group(String name) {
+        this.name = name;
+    }
+
     @Column(name = "name")
     private String name;
 
@@ -32,5 +36,5 @@ public class Group {
     @JoinTable(name="users_groups",
             joinColumns=  @JoinColumn(name="group_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="user_id", referencedColumnName="id") )
-    private Set<User> users = new HashSet<>();
+    private Set<User> users;
 }

@@ -24,7 +24,9 @@ public class EmailValidationService {
         EmailForm emailForm = new EmailForm();
         emailForm.setEmail(email);
         Set<ConstraintViolation<EmailForm>> violations = validator.validate(emailForm);
-
         return violations.isEmpty();
     }
+
+
+
 }
