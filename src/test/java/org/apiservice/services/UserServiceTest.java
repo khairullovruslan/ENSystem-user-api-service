@@ -2,7 +2,6 @@ package org.apiservice.services;
 
 
 import org.apiservice.DTO.UserDTO;
-import org.apiservice.model.Group;
 import org.apiservice.model.User;
 import org.apiservice.repositories.UserRepository;
 import org.junit.jupiter.api.DisplayName;
