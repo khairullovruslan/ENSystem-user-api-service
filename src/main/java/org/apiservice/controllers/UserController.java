@@ -53,6 +53,6 @@ public class UserController {
     @PostMapping("/upload-csv")
     public ResponseEntity<String> uploadCSVFile(@RequestParam("file") MultipartFile file,
                                                 @RequestParam("name") String groupName) {
-       return userService.uploadUsersFromCSVFile(groupName, file);
+       return userService.uploadUsersFromCSVFileWithBatchUpdate(groupName, file);
     }
 }
