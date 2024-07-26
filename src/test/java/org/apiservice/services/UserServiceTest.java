@@ -2,6 +2,8 @@ package org.apiservice.services;
 
 
 import org.apiservice.DTO.UserDTO;
+import org.apiservice.clients.GroupServiceClient;
+import org.apiservice.model.Group;
 import org.apiservice.model.User;
 import org.apiservice.repositories.UserRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +35,7 @@ class UserServiceTest {
     private UserService userService;
 
     @Mock
-    private GroupService groupService;
+    private GroupServiceClient groupService;
 
     @Mock
     private EmailValidationService emailValidationService;
@@ -137,12 +139,12 @@ class UserServiceTest {
                         """).getBytes()));
 
 
-        when(groupService.save((Group) any())).thenReturn(group);
+        when(groupService.saveGroup(any())).thenReturn(group);
 
         ResponseEntity<String> response = userService.uploadUsersFromCSVFile("Test Group", validFile);
 
         verify(emailValidationService, times(4)).isValidEmail(anyString());
-        verify(groupService).save((Group) any());
+        verify(groupService).saveGroup(any());
         assertEquals("File processed successfully", response.getBody());
     }
 }
