@@ -1,12 +1,10 @@
 package org.apiservice.model;
 
 import jakarta.annotation.Nonnull;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
-import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -37,9 +35,9 @@ public class User {
     private Set<Group> ownGroups;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="users_groups",
-            joinColumns=  @JoinColumn(name="user_id", referencedColumnName="id"),
-            inverseJoinColumns= @JoinColumn(name="group_id", referencedColumnName="id") )
+    @JoinTable(name = "users_groups",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
     private Set<Group> groups;
 
     public User(@Nonnull String fullName, @Nonnull String email) {

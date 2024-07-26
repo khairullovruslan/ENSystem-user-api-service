@@ -4,7 +4,6 @@ package org.apiservice.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,8 +32,8 @@ public class Group {
     private User groupOwner;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="users_groups",
-            joinColumns=  @JoinColumn(name="group_id", referencedColumnName="id"),
-            inverseJoinColumns= @JoinColumn(name="user_id", referencedColumnName="id") )
+    @JoinTable(name = "users_groups",
+            joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private Set<User> users;
 }
