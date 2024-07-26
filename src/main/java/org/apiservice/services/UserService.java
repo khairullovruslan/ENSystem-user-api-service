@@ -3,7 +3,6 @@ package org.apiservice.services;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import org.apiservice.DTO.GroupDTO;
 import org.apiservice.DTO.UserDTO;
 import org.apiservice.clients.GroupServiceClient;
 import org.apiservice.model.Group;
@@ -12,9 +11,7 @@ import org.apiservice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;

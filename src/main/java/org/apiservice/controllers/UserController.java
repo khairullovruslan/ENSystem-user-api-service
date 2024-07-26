@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+
 @Slf4j
 @RestController
 @NoArgsConstructor(force = true)
@@ -19,7 +20,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-
 
 
     @Autowired
@@ -30,29 +30,29 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<Void> addNewUser(@RequestBody UserDTO user){
+    public ResponseEntity<Void> addNewUser(@RequestBody UserDTO user) {
         userService.save(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") long id){
+    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
         return new ResponseEntity<>(userService.showById(id), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public void deleteUser(@PathVariable("id") long id){
+    public void deleteUser(@PathVariable("id") long id) {
         userService.deleteUserById(id);
     }
 
     @PostMapping("/upload-csv")
     public ResponseEntity<String> uploadCSVFile(@RequestParam("file") MultipartFile file,
                                                 @RequestParam("name") String groupName) {
-       return userService.uploadUsersFromCSVFileWithBatchUpdate(groupName, file);
+        return userService.uploadUsersFromCSVFileWithBatchUpdate(groupName, file);
     }
 }
